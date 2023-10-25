@@ -1,8 +1,13 @@
 import datetime
+import json
+import os
 
 import gspread
 
-gc = gspread.service_account()
+
+GOOGLE_SERVICE_ACCOUNT_JSON = os.environ['GOOGLE_SERVICE_ACCOUNT_JSON']
+creds_dict = json.loads(GOOGLE_SERVICE_ACCOUNT_JSON)
+gc = gspread.service_account_from_dict(creds_dict)
 
 sheet = gc.open("bob-workouts").sheet1
 
